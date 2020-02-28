@@ -21,7 +21,7 @@ def search(song)
   conn = Faraday.new(url: "https://api.spotify.com")
 
   resp = conn.get do |req|
-    req.url "/v1/search?q=#{song}&type=track,artist&market=MX&limit=5"
+    req.url "/v1/search?q=#{song}&type=track&market=MX&limit=5"
     req.headers['Content-Type'] = 'application/json'
     req.headers['Accept'] = 'application/json'
     req.headers['Authorization'] = AUTH
