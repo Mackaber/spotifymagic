@@ -6,7 +6,7 @@ GEM
       multipart-post (>= 1.2, < 3)
     json (2.0.3)
     multipart-post (2.0.0)
-    rack (2.0.1)
+    rack (2.2.2)
 
 PLATFORMS
   ruby
@@ -15,7 +15,7 @@ DEPENDENCIES
   env
   faraday
   json
-  rack
+  rack (>= 2.0.8)
 
 BUNDLED WITH
    1.16.3
