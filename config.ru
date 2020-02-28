@@ -46,7 +46,7 @@ app = Proc.new do |env|
     track = search(req['q'])
     if track
       add_queue(track['uri'])
-      response = "Added!: #{track['name']} :)\n"
+      response = "Added: #{track['name']} from #{track['artists']['name']}\n"
     else
       response = "Not found :(\n"
     end
