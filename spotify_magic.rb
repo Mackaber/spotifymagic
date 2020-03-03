@@ -1,4 +1,3 @@
-require 'env'
 require 'redis'
 require 'sinatra'
 require 'dotenv/load'

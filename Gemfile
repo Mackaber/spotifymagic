@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'redis-rack'
-gem 'sinatra'
+gem 'redis'
 gem 'dotenv'
+gem 'oauth2'
+gem 'sinatra'
