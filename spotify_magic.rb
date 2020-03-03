@@ -15,7 +15,7 @@ if $redis.exists("mackaber:token_hash")
     client.token = OAuth2::AccessToken.from_hash(client,JSON.parse(token))
 end
 
-def check_token
+def check_token(client)
     if client.token.expired?
         client.token.refresh!
     end
@@ -36,14 +36,14 @@ get '/callback' do
 end
 
 get '/add_song' do
-    check_token do 
+    check_token(client) do 
         client.add_queue(params[:song])
         "<html><script>window.close();</script></html>"
     end
 end
 
 get '/search_and_add' do
-    check_token do 
+    check_token(client) do 
         result = client.search(params['q'])
         track = result["tracks"]["items"][0]
         client.add_queue(track['uri'])
