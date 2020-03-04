@@ -17,7 +17,8 @@ end
 
 def check_token(client)
     if client.token.expired?
-        client.token.refresh!
+        client.token = client.token.refresh!
+        $redis.set("mackaber:token_hash", client.token.to_hash.to_json)
     end
     yield
 end
