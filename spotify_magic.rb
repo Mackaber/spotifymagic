@@ -46,7 +46,7 @@ end
 get '/search_and_add' do
     check_token(client) do 
         result = client.search(params['q'])
-        unless result.empty?
+        unless result["tracks"]["items"].empty?
             track = result["tracks"]["items"][0]
             client.add_queue(track['uri'])
             
