@@ -52,7 +52,7 @@ get '/search_and_add' do
             
             "Added: #{track['name']} from #{track['artists'][0]['name']} \n"
         else
-            "Not found"
+            "Not found \n"
         end
     end
 end
