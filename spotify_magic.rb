@@ -46,9 +46,13 @@ end
 get '/search_and_add' do
     check_token(client) do 
         result = client.search(params['q'])
-        track = result["tracks"]["items"][0]
-        client.add_queue(track['uri'])
-        
-        "Added: #{track['name']} from #{track['artists'][0]['name']} \n"
+        unless result.empty?
+            track = result["tracks"]["items"][0]
+            client.add_queue(track['uri'])
+            
+            "Added: #{track['name']} from #{track['artists'][0]['name']} \n"
+        else
+            "Not found"
+        end
     end
 end
