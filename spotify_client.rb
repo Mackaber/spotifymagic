@@ -3,6 +3,8 @@ require 'oauth2'
 class SpotifyClient < OAuth2::Client
     attr_accessor :token
 
+    @@device_id = "0f62b56d61809ab70140eeed4acea524573227e5"
+
     def initialize(client_id, client_secret, redirect_uri)
         super(client_id, client_secret, :site => "https://api.spotify.com/")
         @redirect_uri = redirect_uri # "http://localhost:9292"
@@ -29,7 +31,7 @@ class SpotifyClient < OAuth2::Client
         response = @token.post("/v1/me/player/add-to-queue", 
             params: {
                 uri:  song,
-                device_id: "0f62b56d61809ab70140eeed4acea524573227e5"
+                device_id: @@device_id
         })
         # Maybe check if the response was sucessful?
     end
@@ -44,6 +46,14 @@ class SpotifyClient < OAuth2::Client
         })
         puts response.body
         JSON.parse response.body
+    end
+
+    def play_now(song)
+        add_queue(song)
+        @token.post("/v1/me/player/next",
+            params: { device_id: @@device_id }
+        )
+        # Maybe check if the response was sucessful?
     end
 
 end

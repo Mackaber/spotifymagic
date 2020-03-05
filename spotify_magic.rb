@@ -37,10 +37,7 @@ get '/callback' do
 end
 
 get '/add_song' do
-    check_token(client) do 
-        client.add_queue(params[:song])
-        "<html><script>window.close();</script></html>"
-    end
+
 end
 
 get '/search_and_add' do
@@ -54,5 +51,12 @@ get '/search_and_add' do
         else
             "Not found \n"
         end
+    end
+end
+
+get '/play_now' do
+    check_token(client) do 
+        client.play_now(params[:song])
+        "<html><script>window.close();</script></html>"
     end
 end
